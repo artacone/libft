@@ -6,7 +6,7 @@
 #    By: rvertie <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/12 21:13:42 by rvertie           #+#    #+#              #
-#    Updated: 2021/04/13 12:58:31 by rvertie          ###   ########.fr        #
+#    Updated: 2021/04/14 11:30:04 by rvertie          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ OBJS		= $(addprefix $(OBJ_DIR), $(notdir $(SRCS:.c=.o)))
 
 CC			= gcc
 
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -O2
 
 RM			= rm -f
 
