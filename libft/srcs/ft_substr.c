@@ -6,7 +6,7 @@
 /*   By: rvertie <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 00:15:49 by rvertie           #+#    #+#             */
-/*   Updated: 2021/04/14 00:39:56 by rvertie          ###   ########.fr       */
+/*   Updated: 2021/04/16 15:55:14 by rvertie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (start > ft_strlen(s))
 	{
-		return (NULL);
+		start = ft_strlen(s);
 	}
 	subs = (char *)malloc(len + 1);
 	if (subs == NULL)

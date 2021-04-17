@@ -6,7 +6,7 @@
 /*   By: rvertie <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 11:11:20 by rvertie           #+#    #+#             */
-/*   Updated: 2021/04/13 12:48:14 by rvertie          ###   ########.fr       */
+/*   Updated: 2021/04/16 15:40:30 by rvertie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	{
 		while (*big != *little)
 		{
-			if (*big++ == '\0' || len-- < little_len)
+			if (*big++ == '\0' || len-- <= little_len)
 				return (NULL);
 		}
 		if (ft_strncmp(big, little, little_len) == 0)

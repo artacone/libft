@@ -6,53 +6,56 @@
 /*   By: rvertie <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 09:23:46 by rvertie           #+#    #+#             */
-/*   Updated: 2021/04/14 10:31:34 by rvertie          ###   ########.fr       */
+/*   Updated: 2021/04/16 19:09:32 by rvertie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-static unsigned int	ncheck(int n, char *digits, int *i)
+static void	ft_itoa_internal(int n, char *digits, int *i)
 {
-	unsigned int	un;
-
-	digits[0] = 0;
 	if (n < 0)
 	{
-		digits[0] = '-';
-		un = -n;
-		return (un);
+		while (n)
+		{
+			digits[(*i)++] = -(n % 10) + '0';
+			n /= 10;
+		}
+		digits[(*i)++] = '-';
 	}
-	un = n;
-	if (un == 0)
+	else if (n > 0)
 	{
-		digits[1] = '0';
-		*i = 2;
+		while (n)
+		{
+			digits[(*i)++] = (n % 10) + '0';
+			n /= 10;
+		}
 	}
-	return (un);
+	else
+	{
+		digits[(*i)++] = '0';
+	}
 }
 
 char	*ft_itoa(int n)
 {
-	char			digits[11];
-	int				i;
-	char			*res;
-	unsigned int	un;
+	char	digits[11];
+	int		i;
+	int		j;
+	char	*res;
 
-	i = 1;
-	un = ncheck(n, digits, &i);
-	while (un)
-	{
-		digits[i++] = un % 10 + '0';
-		un /= 10;
-	}
+	i = 0;
+	ft_itoa_internal(n, digits, &i);
 	res = (char *)malloc(i + 1);
 	if (res == NULL)
+	{
 		return (NULL);
-	if (digits[0] == '-')
-		res[un++] = '-';
-	while (i > 1)
-		res[un++] = digits[--i];
-	res[un] = '\0';
+	}
+	j = 0;
+	while (i > 0)
+	{
+		res[j++] = digits[--i];
+	}
+	res[j] = '\0';
 	return (res);
 }
