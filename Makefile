@@ -10,36 +10,34 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= libft.a
+NAME		=	libft.a
 
-SRC_DIR		= ./srcs/
+SRC_DIR		=	./src/
 
-OBJ_DIR		= ./objs/
+OBJ_DIR		=	./obj/
 
-HEADER_DIR	= ./includes/
+HEADER_DIR	=	./include/
 
-SRCS		= $(wildcard ${SRC_DIR}*.c)
+SRC			=	$(wildcard ${SRC_DIR}*.c)
 
-HEADERS		= $(wildcard ${HEADER_DIR}*.h)
+HEADER		=	$(wildcard ${HEADER_DIR}*.h)
 
-OBJS		= $(addprefix $(OBJ_DIR), $(notdir $(SRCS:.c=.o)))
+OBJ			=	$(addprefix $(OBJ_DIR), $(notdir $(SRC:.c=.o)))
 
-CC			= gcc
+CC			=	gcc
 
-CFLAGS		= -Wall -Wextra -Werror -O2
+CFLAGS		=	-Wall -Wextra -Werror -MMD -O2
 
-RM			= rm -f
+RM			=	rm -f
 
-
-.PHONY: all clean fclean re
 
 all: $(NAME)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS) | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -I $(HEADER_DIR) -c $< -o $@
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADER) | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -I$(HEADER_DIR) -c $< -o $@
 
-$(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $(OBJ)
 
 clean:
 	$(RM) -r $(OBJ_DIR)
@@ -50,4 +48,6 @@ fclean: clean
 $(OBJ_DIR):
 	mkdir $(OBJ_DIR)
 
-re: fclean  $(OBJ_DIR) all
+re: fclean $(OBJ_DIR) all
+
+.PHONY: all clean fclean re
